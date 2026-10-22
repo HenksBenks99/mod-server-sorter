@@ -4,7 +4,7 @@ import json
 import time
 
 # Configurazione API CurseForge
-API_KEY = "REDACTED_CURSEFORGE_API_KEY"
+API_KEY = "YOUR_API"
 BASE_URL = "https://api.curseforge.com/v1"
 
 # Mappatura delle categorie CurseForge (Minecraft gameId: 432)
