@@ -348,13 +348,13 @@ Se vuoi contribuire, crea una issue o un pull request!
 
 ## 📞 Contatti
 
-- **GitHub**: [Riccardo.Contatto.GitHub](https://github.com/Riccardo.Contatto.GitHub)
+- **GitHub**: [Henks](https://github.com/HenksBenks99)
 - **Email**: tuo_contatto_github
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by Riccardo**
+**Made with ❤️ by Henks**
 
 </div>
