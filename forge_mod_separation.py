@@ -64,7 +64,22 @@ CLIENT_WORDS_IN_SERVER_MODS = {
 # CONFIGURAZIONE API CURSEFORGE (FALLBACK AUTOMATICO)
 # ============================================================================
 # CurseForge API come fallback quando Modrinth non trova la mod
-CURSEFORGE_API_KEY = "REDACTED_CURSEFORGE_API_KEY"
+#
+# ⚠️  SICUREZZA: la API key NON va scritta nel codice.
+#     Forniscila tramite variabile d'ambiente:
+#         PowerShell:      $env:CURSEFORGE_API_KEY = "la_tua_key"
+#         Windows CMD:     set CURSEFORGE_API_KEY=la_tua_key
+#         Linux/macOS:     export CURSEFORGE_API_KEY=la_tua_key
+#     oppure in config.py (file locale, escluso da .gitignore).
+CURSEFORGE_API_KEY = os.environ.get("CURSEFORGE_API_KEY", "").strip()
+
+if not CURSEFORGE_API_KEY:
+    try:  # fallback opzionale sul config.py locale (mai committato)
+        from config import CURSEFORGE_API_KEY as _CFG_KEY  # type: ignore
+        if isinstance(_CFG_KEY, str):
+            CURSEFORGE_API_KEY = _CFG_KEY.strip()
+    except Exception:
+        pass
 CURSEFORGE_BASE_URL = "https://api.curseforge.com/v1"
 CURSEFORGE_GAME_ID = 432  # Minecraft
 CURSEFORGE_MODS_ENDPOINT = "/mods/search"

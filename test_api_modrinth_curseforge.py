@@ -17,7 +17,8 @@ MODRINTH_HEADERS = {
 }
 
 # Configurazione API CurseForge
-CURSEFORGE_API_KEY = "YOUR_API"
+# ⚠️ Non hardcodare la chiave: usa la variabile d'ambiente CURSEFORGE_API_KEY
+CURSEFORGE_API_KEY = os.environ.get("CURSEFORGE_API_KEY", "").strip()
 CURSEFORGE_BASE_URL = "https://api.curseforge.com/v1"
 CURSEFORGE_GAME_ID = 432
 CURSEFORGE_MODS_ENDPOINT = "/mods/search"

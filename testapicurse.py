@@ -1,10 +1,12 @@
+import os
 import urllib.request
 import urllib.parse
 import json
 import time
 
 # Configurazione API CurseForge
-API_KEY = "YOUR_API"
+# ⚠️ Non hardcodare la chiave: usa la variabile d'ambiente CURSEFORGE_API_KEY
+API_KEY = os.environ.get("CURSEFORGE_API_KEY", "").strip()
 BASE_URL = "https://api.curseforge.com/v1"
 
 # Mappatura delle categorie CurseForge (Minecraft gameId: 432)

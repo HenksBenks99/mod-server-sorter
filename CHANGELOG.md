@@ -2,6 +2,19 @@
 
 Tutti i cambiamenti importanti per questo progetto sono documentati in questo file.
 
+## [4.1.1] - 2026-10-30
+
+### Sicurezza
+- **Rimossa l'API key CurseForge hardcoded** da `forge_mod_separation.py` (era presente nel codice versionato)
+- La chiave ora viene letta da:
+  1. variabile d'ambiente `CURSEFORGE_API_KEY`
+  2. `config.py` locale (escluso da `.gitignore`)
+- `test_api_modrinth_curseforge.py` e `testapicurse.py` aggiornati per usare la variabile d'ambiente invece di un valore nel codice
+
+> ⚠️ **Azione richiesta**: la chiave resta nella cronologia Git dei commit precedenti. Va **revocata e rigenerata** dalla dashboard CurseForge.
+
+---
+
 ## [4.1.0] - 2026-10-30
 
 ### Aggiunti
