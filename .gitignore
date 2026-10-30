@@ -27,7 +27,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -36,6 +35,21 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# NOTA: lib/ NON è ignorata: è il package sorgente del progetto
+
+# ====================
+# MINECRAFT MODS (mai versionare i jar!)
+# ====================
+mods/
+*.jar
+*.jar.disabled
+Server Mod/
+Server_Ready/
+Server_Ready_Test/
+
+# Backup locali
+*.local.bak
 
 # ====================
 # OS
@@ -62,6 +76,8 @@ Thumbs.db
 # ====================
 *.log
 logs/
+mod_analysis_report.txt
+comparison_report.txt
 
 # ====================
 # OTHER

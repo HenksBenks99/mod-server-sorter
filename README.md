@@ -4,7 +4,7 @@
 
 ## 🔍 Identifica e separa mod Client-Only dalle mod Server-Ready per Minecraft modpacks
 
-**ForgeModSearch v3.5.0** - Integrazione API Modrinth + CurseForge
+**ForgeModSearch v4.1.0** - Parsing del campo `side` + override server-side
 
 </div>
 
@@ -13,11 +13,31 @@
 ## 🎯 Caratteristiche Principali
 
 - ✅ **Analisi Statica**: Legge `fabric.mod.json`, `mods.toml`, `neoforge.mods.toml`
+- ✅ **Campo `side` (v4.1.0)**: Usa la chiave ufficiale `side` di Forge/NeoForge, non `displayTest`
+- ✅ **Override Server-Side**: Librerie/API critiche (`kotlinforforge`, `jei`, `ferritecore`, `connector`, ...) forzate lato server
 - ✅ **API Modrinth** (Prioritaria): Verifica online tramite [api.modrinth.com](https://api.modrinth.com)
 - ✅ **API CurseForge** (Fallback Automatico): Verifica tramite [api.curseforge.com](https://api.curseforge.com)
 - ✅ **Whitelist BOTH**: Mod note classificate come BOTH anche se `client_side=required`
 - ✅ **Cache Locale**: Memorizza i risultati per evitare chiamate API duplicate
 - ✅ **Gestione Errori Robusta**: Timeout, retry, fallback automatico
+
+---
+
+## 🆕 v4.1.0 - Nuova pipeline di classificazione
+
+Due nuovi moduli affiancano lo script principale:
+
+| File | Ruolo |
+|------|-------|
+| `mod_parser.py` | Estrae i metadati interni dei jar e restituisce il lato reale (`client` / `server` / `both` / `unknown`) leggendo `side` in `[[mods]]` (Forge/NeoForge) o `environment` (Fabric) |
+| `forge_mod_separation_refactored.py` | Applica la mappa `SERVER_SIDE_FORCE_INCLUDE` e copia le mod server-ready in `mods/Server_Ready` |
+
+> ⚠️ **Perché è importante**: `displayTest` non indica il lato della mod, ma solo il comportamento del match client/server in multiplayer. Usare `side` elimina i falsi positivi che causavano crash all'avvio del server.
+
+```bash
+# Nuova pipeline (v4.1.0)
+python forge_mod_separation_refactored.py --input ./mods/mods-corrected --output ./mods/Server_Ready
+```
 
 ---
 

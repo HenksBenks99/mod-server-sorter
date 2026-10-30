@@ -2,6 +2,24 @@
 
 Tutti i cambiamenti importanti per questo progetto sono documentati in questo file.
 
+## [4.1.0] - 2026-10-30
+
+### Aggiunti
+- **`mod_parser.py`**: nuovo parser che legge la chiave ufficiale `side` dentro `[[mods]]` (Forge/NeoForge) e `environment` (Fabric), restituendo `client` / `server` / `both` / `unknown`
+- **`forge_mod_separation_refactored.py`**: riscrittura della logica di separazione basata sui metadati interni dei jar
+- **Mappa `SERVER_SIDE_FORCE_INCLUDE`**: override espliciti per librerie/API necessarie al server (`kotlinforforge`, `jei`, `ferritecore`, `connector`, `polymorph`, `searchables`, `journeymap`, `tconjei`, `appleskin`, ecc.)
+- **`.gitignore`**: aggiunti `mods/`, `*.jar`, `*.jar.disabled`, `Server Mod/`, `Server_Ready/` e i report generati
+
+### Corretto
+- **Causa dei falsi positivi**: la logica precedente leggeva `displayTest`, che NON indica il lato della mod. `displayTest` controlla solo il match client/server in multiplayer; la chiave corretta è `side` in `[[mods]]`
+- **Librerie di dipendenza**: `kotlinforforge` e simili vengono forzate lato server, evitando crash del tipo `requires kotlinforforge X or above`
+- **`.gitignore`**: rimossa la regola `lib/`, che avrebbe escluso il package sorgente del progetto
+
+### Rimosso
+- **419 jar tracciati** (~906 MB) sotto `mods/`: i jar delle mod non devono essere versionati
+
+---
+
 ## [3.5.0] - 2026-10-23
 
 ### Aggiunti
